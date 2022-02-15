@@ -1,10 +1,14 @@
 ## Modern Vue
 
-Am-editor for vue with example and toolbar(wip).
+Am-editor for Vue3 with example and component-toolbar(wip).
 
-<p align='center'>
-<b>English</b> | <a href="https://github.com/byoungd/am-editor-vue/blob/main/README.zh-CN.md">简体中文</a>
-</p>
+<div align="center">
+  <p>
+    <a href="README_zh-CN.md">
+      <img src="https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?longCache=true&style=flat-square">
+    </a>
+  </p>
+</div>
 
 ## Usage
 
