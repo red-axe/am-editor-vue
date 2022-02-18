@@ -1,5 +1,5 @@
 {
-  "name": "@am/toolbar-vue",
+  "name": "@aomao/toolbar-vue",
   "version": "2.7.29",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

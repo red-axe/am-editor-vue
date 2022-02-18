@@ -10,7 +10,11 @@ import Mention, { MentionComponent } from '@aomao/plugin-mention'
 import Status, { StatusComponent } from '@aomao/plugin-status'
 import Table, { TableComponent } from '@aomao/plugin-table'
 import Tasklist, { CheckboxComponent } from '@aomao/plugin-tasklist'
-import { ToolbarComponent, ToolbarPlugin, fontFamilyDefaultData } from '@am/toolbar-vue'
+import {
+  ToolbarComponent,
+  ToolbarPlugin,
+  fontFamilyDefaultData,
+} from '@aomao/toolbar-vue'
 import Video, { VideoComponent, VideoUploader } from '@aomao/plugin-video'
 
 import Alignment from '@aomao/plugin-alignment'

@@ -453,7 +453,7 @@
       "reviewCategory": "example"
     },
     {
-      "packageName": "@am/toolbar-vue",
+      "packageName": "@aomao/toolbar-vue",
       "projectFolder": "packages/toolbar",
       "reviewCategory": "toolbar"
     }
