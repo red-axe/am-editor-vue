@@ -1,14 +1,12 @@
 ## Modern Vue
 
-Am-editor for Vue3 with example and component-toolbar(wip).
+Am-editor for vue with example and toolbar(wip).
 
-<div align="center">
-  <p>
-    <a href="README_zh-CN.md">
-      <img src="https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?longCache=true&style=flat-square">
-    </a>
-  </p>
-</div>
+<p align='center'>
+<b>English</b> | <a href="https://github.com/byoungd/am-editor-vue/blob/main/README.zh-CN.md">简体中文</a>
+</p>
+
+![](assets/editor.png)
 
 ## Usage
 
@@ -27,9 +25,9 @@ Go project folder and using `rushx` run and visit `http://localhost:3333` :
 ```bash
 rush update
 
-rush rebuild -T example
+rush rebuild -T editor
 
-cd apps/example
+cd packages/editor
 
 rushx dev
 ```

@@ -2,6 +2,8 @@
 
 Am-editor vue 组件。
 
+![](assets/editor.png)
+
 ## Usage
 
 > Node 版本 >=14
@@ -19,9 +21,9 @@ npm i -g pnpm typescript eslint@7 @microsoft/rush prettier
 ```bash
 rush update
 
-rush rebuild -T example
+rush rebuild -T editor
 
-cd apps/example
+cd packages/editor
 
 rushx dev
 ```

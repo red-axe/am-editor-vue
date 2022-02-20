@@ -448,14 +448,14 @@
     // },
     //
     {
-      "packageName": "example",
-      "projectFolder": "apps/example",
-      "reviewCategory": "example"
-    },
-    {
       "packageName": "@am/toolbar-vue",
       "projectFolder": "packages/toolbar",
       "reviewCategory": "toolbar"
+    },
+    {
+      "packageName": "editor",
+      "projectFolder": "packages/editor",
+      "reviewCategory": "editor"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "@am/toolbar-vue",
-  "version": "2.7.29",
+  "name": "editor",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -11,20 +11,14 @@
   "scripts": {
     "dev": "vite --mode development",
     "build": "vite build",
-    "release": "vue-tsc --declaration --emitDeclarationOnly && vite build",
+    "release": "vue-tsc && vite build",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs"
+    "docs:build": "vitepress build docs",
+    "format": "prettier --write \"src/**/*.vue\"",
+    "lint-fix": "eslint --fix --color --ext .js,.vue,.ts src"
   },
   "author": "byoungd",
   "license": "MIT",
-  "homepage": "https://github.com/yanmao-cc/am-editor#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yanmao-cc/am-editor.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yanmao-cc/am-editor/issues"
-  },
   "dependencies": {
     "@aomao/engine": "^2.7.28",
     "keymaster": "^1.6.2",
@@ -33,7 +27,6 @@
     "vue": "^3.2.9",
     "vite": "~2.8.1",
     "vue-tsc": "~0.31.2",
-    "vitepress": "~0.22.0",
     "@vitejs/plugin-vue": "~2.2.0",
     "vite-plugin-windicss": "~1.7.0",
     "vite-plugin-vue-layouts": "~0.6.0",
@@ -76,10 +69,13 @@
     "@aomao/plugin-status": "^2.6.16",
     "@aomao/plugin-video": "^2.6.16",
     "@aomao/plugin-line-height": "^2.6.16",
-    "eslint": "^7"
+    "eslint": "^7.2.31",
+    "@aomao/toolbar-vue": "~2.7.33",
+    "less": "~4.1.2",
+    "less-loader": "~10.2.0",
+    "prettier": "~2.5.1"
   },
   "devDependencies": {
-    "prettier": "~2.5.1",
     "@types/tinycolor2": "~1.4.3",
     "@types/keymaster": "^1.6.28",
     "@types/lodash": "^4.14.178",
@@ -87,13 +83,16 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0"
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.1"
   },
-  "module": "./dist/toolbar.es.js",
+  "module": "./dist/editor.es.js",
   "exports": {
     ".": {
-      "import": "./dist/toolbar.es.js",
-      "require": "./dist/toolbar.umd.js"
+      "import": "./dist/editor.es.js",
+      "require": "./dist/editor.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
