@@ -14,14 +14,13 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 import Engine, { $, EngineInterface, ChangeInterface, isMobile } from '@aomao/engine'
 import AmToolbar, { GroupItemProps } from '@aomao/toolbar-vue'
-import AmLoading from './loading.vue'
 import { cards, plugins, pluginConfig } from './config'
 import { defaultContent, getDefaultToolbarItems, getDefaultStyle } from './default'
-import { StyleOptions, NODES } from './types'
+import { StyleOption, NODES, Message, ChangePayload } from './types'
 
 interface IProps {
   content: string
-  styleOption?: StyleOption
+  styleOption?: Partial<StyleOption>
   items?: GroupItemProps[]
 }
 
@@ -34,11 +33,12 @@ const props = withDefaults(defineProps<IProps>(), {
 const styles = ref<StyleOption>({ ...getDefaultStyle(), ...props.styleOption })
 
 const emit = defineEmits<{
-  (type: 'change', change: { html: string; json: NODES }): void
+  (type: 'change', change: ChangePayload): void
   (event: 'changeHTML', content: string): void
   (event: 'changeJSON', content: NODES): void
   (event: 'select', change: ChangeInterface): void
-  (event: 'confirm', msg: string): void
+  (event: 'confirm', message: string): Promise<boolean>
+  (event: 'message', message: Message): void
 }>()
 
 // 编辑器容器
@@ -67,16 +67,18 @@ onMounted(() => {
     })
     // 设置显示成功消息UI，默认使用 console.log
     engineInstance.messageSuccess = (msg: string) => {
-      message.success(msg)
+      emit('message', { type: 'success', msg })
     }
     // 设置显示错误消息UI，默认使用 console.error
     engineInstance.messageError = (error: string) => {
-      message.error(error)
+      emit('message', { type: 'error', msg: error })
     }
 
     // 设置显示确认消息UI，默认无
     engineInstance.messageConfirm = (msg: string) => {
-      emit('confirm', msg)
+      return new Promise((resolve, reject) => {
+        emit('confirm', msg).then(resolve, reject)
+      })
     }
     // 卡片最大化时设置编辑页面样式
     engineInstance.on('card:maximize', () => {
