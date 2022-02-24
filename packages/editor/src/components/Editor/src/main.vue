@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts" name="RedaxeEditor">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 import Engine, { $, EngineInterface, ChangeInterface, isMobile } from '@aomao/engine'
 import AmToolbar, { GroupItemProps } from '@aomao/toolbar-vue'
@@ -19,13 +19,13 @@ import { defaultContent, getDefaultToolbarItems, getDefaultStyle } from './defau
 import { StyleOption, NODES, Message, ChangePayload } from './types'
 
 interface IProps {
-  content: string
+  modelValue?: string
   styleOption?: Partial<StyleOption>
   items?: GroupItemProps[]
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  content: defaultContent,
+  modelValue: defaultContent,
   items: () => getDefaultToolbarItems(isMobile),
   styleOption: () => ({}),
 })
@@ -33,6 +33,7 @@ const props = withDefaults(defineProps<IProps>(), {
 const styles = ref<StyleOption>({ ...getDefaultStyle(), ...props.styleOption })
 
 const emit = defineEmits<{
+  (type: 'update:modelValue', change: string): void
   (type: 'change', change: ChangePayload): void
   (event: 'changeHTML', content: string): void
   (event: 'changeJSON', content: NODES): void
@@ -89,7 +90,7 @@ onMounted(() => {
     })
     // 默认编辑器值，为了演示，这里初始化值写死，正式环境可以请求api加载
 
-    const value = props.content
+    const value = props.modelValue
     // 使用协同编辑，需要安装 mongodb 数据库，并且配置 ot-server/client 中的数据库连接，最后 yarn start 启动 ot-server 服务
 
     // 非协同编辑，设置编辑器值，异步渲染后回调
@@ -103,6 +104,7 @@ onMounted(() => {
         html: engineInstance.getHtml(),
         json: engineInstance.getJsonValue(),
       })
+      emit('update:modelValue', engineInstance.getHtml())
       emit('changeHTML', engineInstance.getHtml())
       emit('changeJSON', engineInstance.getJsonValue())
     })
