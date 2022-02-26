@@ -453,7 +453,7 @@
       "reviewCategory": "toolbar"
     },
     {
-      "packageName": "editor",
+      "packageName": "am-editor-vue",
       "projectFolder": "packages/editor",
       "reviewCategory": "editor"
     }
