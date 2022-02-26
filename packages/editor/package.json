@@ -1,6 +1,11 @@
 {
   "name": "am-editor-vue",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "description": "am-editor component for vue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-axe/am-editor-vue.git"
+  },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
