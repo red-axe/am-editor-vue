@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts" name="RedaxeEditor">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import Engine, { $, EngineInterface, ChangeInterface, isMobile } from '@aomao/engine'
 import AmToolbar, { GroupItemProps } from '@aomao/toolbar-vue'
