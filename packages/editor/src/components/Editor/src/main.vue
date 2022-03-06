@@ -1,5 +1,5 @@
 <template>
-  <AmToolbar v-if="engine" :engine="engine" :items="items" />
+  <AmToolbar v-if="engine" :engine="engine" :items="toolbarItems" />
   <div :class="['editor-wrapper', { 'editor-mobile': isMobile }]">
     <div class="editor-container text-left">
       <div class="editor-content">
@@ -22,22 +22,26 @@ interface IProps {
   modelValue?: string
   styleOption?: Partial<StyleOption>
   items?: GroupItemProps[]
+  customToolbarItems?: GroupItemProps
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   modelValue: defaultContent,
   items: () => getDefaultToolbarItems(isMobile),
+  customToolbarItems: () => [],
   styleOption: () => ({}),
 })
 
 const styles = ref<StyleOption>({ ...getDefaultStyle(), ...props.styleOption })
+
+const toolbarItems = ref<GroupItemProps[]>([...props.items, props.customToolbarItems])
 
 const emit = defineEmits<{
   (type: 'update:modelValue', change: string): void
   (type: 'change', change: ChangePayload): void
   (event: 'changeHTML', content: string): void
   (event: 'changeJSON', content: NODES): void
-  (event: 'select', change: ChangeInterface): void
+  (event: 'onSelect', change: ChangeInterface): void
   (event: 'confirm', message: string): Promise<boolean>
   (event: 'message', message: Message): void
 }>()
@@ -110,7 +114,7 @@ onMounted(() => {
     })
 
     engineInstance.on('select', () => {
-      emit('select', engineInstance.change)
+      emit('onSelect', engineInstance.change)
     })
 
     engine.value = engineInstance
@@ -121,13 +125,8 @@ onUnmounted(() => {
   if (engine.value) engine.value.destroy()
 })
 </script>
+
 <style scoped>
-#app {
-  padding: 0;
-}
-#nav {
-  position: relative;
-}
 .editor-ot-users {
   font-size: 12px;
   background: #ffffff;
@@ -152,6 +151,10 @@ onUnmounted(() => {
   /* transition: box-shadow 0.3s ease-in-out;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%); */
   z-index: 1000;
+}
+.editor-toolbar .toolbar-button {
+  font-size: 14px;
+  color: #666;
 }
 .editor-wrapper {
   position: relative;
@@ -202,9 +205,11 @@ onUnmounted(() => {
 
 .editor-content .am-engine {
   padding: 40px 60px 60px;
+  font-family: v-bind(styles.fontFamily);
 }
 
 .editor-mobile .editor-content .am-engine {
   padding: 18px 0 0 0;
+  font-family: v-bind(styles.fontFamily);
 }
 </style>

@@ -1,6 +1,17 @@
-import { EngineInterface } from '@aomao/engine'
-export type { ChangeInterface } from '@aomao/engine'
+import {
+  ChangeInterface,
+  EngineInterface,
+  NodeInterface,
+  RangeInterface,
+} from '@aomao/engine'
+
+import { GroupItemProps } from '@aomao/toolbar-vue'
 import { Ref } from 'vue'
+
+export type { ChangeInterface, RangeInterface, NodeInterface, EngineInterface }
+
+export type { GroupItemProps }
+
 export interface StyleOption {
   height: number | string
   width: number | string
